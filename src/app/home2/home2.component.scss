@@ -1,6 +1,6 @@
 .main {
-  min-height: calc(100vh - 70px - 300px); // 减去header和footer的高度
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: calc(100vh - 70px - 200px); // 减少Footer高度估算
+  background: linear-gradient(135deg, #0014DC 0%, #0014DC 100%);
   padding: 2rem;
   display: flex;
   justify-content: center;
@@ -60,13 +60,18 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
   }
+  
+  &:focus {
+    outline: 2px solid #28a745;
+    outline-offset: 2px;
+  }
 }
 
 // 响应式设计
 @media (max-width: 768px) {
   .main {
     padding: 1rem;
-    min-height: calc(100vh - 70px - 400px);
+    min-height: calc(100vh - 70px - 250px);
   }
   
   .title {

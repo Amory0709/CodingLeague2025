@@ -1,4 +1,9 @@
 .main {
+  min-height: calc(100vh - 70px - 200px); // 减少Footer高度估算
+  background: linear-gradient(135deg, #0014DC 0%, #0014DC 100%);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 20px;
@@ -45,6 +50,14 @@
   color: #2d3748;
   margin-bottom: 32px;
   text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #0014DC 0%, #0014DC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   
   @media (max-width: 768px) {
     font-size: 24px;
@@ -160,6 +173,7 @@
   }
 }
 
+.form-actions {
 .form-actions {
   display: flex;
   gap: 16px;
