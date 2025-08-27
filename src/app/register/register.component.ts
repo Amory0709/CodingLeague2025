@@ -351,8 +351,7 @@ export class RegisterComponent implements CanComponentDeactivate, OnInit {
         team: this.formData.team,
         avatar: 'assets/default-avatar.svg'
       });
-
-      console.log('Registration successful:', this.formData);
+      this.router.navigate(['/congrats']);
     }
   }
 
