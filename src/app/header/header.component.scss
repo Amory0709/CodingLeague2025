@@ -1,10 +1,16 @@
 .header {
   background: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: fixed; // 改为fixed定位，确保始终固定在顶部
   top: 0;
+  left: 0;
+  right: 0; // 确保宽度占满整个视口
   z-index: 1000;
   height: 70px;
+  transition: all 0.3s ease;
+  will-change: transform;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .header-container {

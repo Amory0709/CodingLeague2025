@@ -22,6 +22,7 @@ app-root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-top: 70px; // 为fixed header添加顶部padding
 }
 
 // 主内容区域

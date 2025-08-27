@@ -1,36 +1,12 @@
 <div class="cookie-consent" *ngIf="showConsent" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-description">
   <div class="cookie-content">
-    <div class="cookie-header">
+    <div class="cookie-info">
       <div class="cookie-icon" aria-hidden="true">🍪</div>
-      <h2 id="cookie-title" class="cookie-title">Cookie Consent</h2>
-    </div>
-    
-    <div class="cookie-body">
-      <p id="cookie-description" class="cookie-description">
-        We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. 
-        By clicking "Accept All", you consent to our use of cookies. You can learn more about our 
-        <a href="#" class="cookie-link">Cookie Policy</a> and 
-        <a href="#" class="cookie-link">Privacy Policy</a>.
-      </p>
-      
-      <div class="cookie-options">
-        <div class="cookie-option">
-          <input type="checkbox" id="essential-cookies" checked disabled>
-          <label for="essential-cookies">Essential Cookies (Required)</label>
-          <span class="cookie-option-desc">Necessary for the website to function properly</span>
-        </div>
-        
-        <div class="cookie-option">
-          <input type="checkbox" id="analytics-cookies">
-          <label for="analytics-cookies">Analytics Cookies</label>
-          <span class="cookie-option-desc">Help us understand how visitors interact with our website</span>
-        </div>
-        
-        <div class="cookie-option">
-          <input type="checkbox" id="marketing-cookies">
-          <label for="marketing-cookies">Marketing Cookies</label>
-          <span class="cookie-option-desc">Used to deliver personalized advertisements</span>
-        </div>
+      <div class="cookie-text">
+        <p id="cookie-description" class="cookie-description">
+          We use cookies to enhance your experience. 
+          <a href="#" class="cookie-link">Learn more</a>
+        </p>
       </div>
     </div>
     
@@ -39,7 +15,7 @@
               class="btn btn-secondary" 
               (click)="declineCookies()"
               aria-label="Decline non-essential cookies">
-        Decline Non-Essential
+        Decline
       </button>
       <button type="button" 
               class="btn btn-primary" 
