@@ -37,6 +37,9 @@ export class ProfilePageComponent implements CanComponentDeactivate {
     birthDay: ''
   };
 
+  // 用于跟踪是否正在提交表单
+  isSubmitting = false;
+
   // 称谓选项
   titleOptions = [
     { value: 'mr', label: 'Mr.' },
@@ -115,11 +118,17 @@ export class ProfilePageComponent implements CanComponentDeactivate {
               this.form.address !== this.originalForm.address ||
               this.form.birthYear !== this.originalForm.birthYear ||
               this.form.birthMonth !== this.originalForm.birthMonth ||
-              this.form.birthDay !== this.originalForm.birthDay);
+              this.form.birthDay !== this.originalForm.birthDay ||
+              this.avatarUrl !== (this.userInfo?.avatar || null));
   }
 
-  // 实现CanComponentDeactivate接口
+  // 实现CanComponentDeactivate接口 - 只在点击cancel时触发guard
   canDeactivate(): boolean {
+    if (this.isSubmitting) {
+      // 如果正在提交，允许导航
+      return true;
+    }
+    
     if (this.hasFormChanges()) {
       return confirm('You have unsaved changes. Are you sure you want to leave?');
     }
@@ -132,15 +141,16 @@ export class ProfilePageComponent implements CanComponentDeactivate {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.avatarUrl = e.target.result;
-        // 更新用户服务中的头像
-        this.userService.updateUserAvatar(e.target.result);
       };
       reader.readAsDataURL(file);
     }
   }
 
   onSave() {
-    // 保存个人信息到用户服务
+    // 设置提交状态，绕过guard
+    this.isSubmitting = true;
+    
+    // 保存个人信息到用户服务 (只有在提交时才更新header)
     this.userService.updateUserProfile({
       ...this.form,
       avatar: this.avatarUrl || undefined
@@ -154,6 +164,7 @@ export class ProfilePageComponent implements CanComponentDeactivate {
   }
 
   onCancel() {
+    // Cancel时不设置isSubmitting，让guard正常工作
     this.router.navigate(['/home2']);
   }
 }
