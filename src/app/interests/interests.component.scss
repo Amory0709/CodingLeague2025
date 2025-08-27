@@ -1,276 +1,325 @@
 .main {
-  min-height: calc(100vh - 70px);
+  min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
+  padding: 20px;
+  
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 }
 
 .interests-container {
-  background: #ffffff;
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-  padding: 3rem 4rem;
-  max-width: 1000px;
-  width: 100%;
-  max-height: calc(100vh - 140px);
-  overflow-y: auto;
-}
-
-// 页面头部
-.page-header {
-  text-align: center;
-  margin-bottom: 2rem;
-  position: relative;
-}
-
-.title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 1rem;
-}
-
-.progress-indicator {
-  display: inline-block;
-  background: #f8f9fa;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   
-  .progress-text {
-    color: #666;
-    font-size: 0.9rem;
-    font-weight: 500;
+  @media (max-width: 768px) {
+    margin: 10px;
+    border-radius: 12px;
   }
 }
 
-.skip-btn {
-  position: absolute;
+.sticky-header {
+  position: sticky;
   top: 0;
-  right: 0;
-  background: none;
-  border: none;
-  color: #667eea;
-  font-size: 0.9rem;
-  cursor: pointer;
-  text-decoration: underline;
-  transition: color 0.2s;
+  background: white;
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 10;
   
-  &:hover {
-    color: #764ba2;
+  @media (max-width: 768px) {
+    padding: 16px;
   }
 }
-
-// 兴趣内容区域
-.interests-content {
-  margin-bottom: 2rem;
-}
-
-.interests-description {
-  text-align: center;
-  margin-bottom: 2rem;
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #f0f0f0;
+  border-radius: 3px;
+  margin-bottom: 32px; // 改为与 profile 页面一致的 32px
+  overflow: hidden;
   
-  p {
-    color: #666;
-    font-size: 1rem;
-    line-height: 1.5;
+  .progress-bar-inner {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 3px;
+    transition: width 0.3s ease;
   }
 }
 
-.categories-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.category-section {
-  .category-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #e9ecef;
-  }
-}
-
-.interests-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-}
-
-.interest-card {
-  position: relative;
-  background: #f8f9fa;
-  border: 2px solid #e9ecef;
-  border-radius: 12px;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  min-height: 120px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-color: var(--card-color);
-  }
-  
-  &.selected {
-    background: var(--card-color);
-    border-color: var(--card-color);
-    color: white;
-    
-    .interest-name {
-      color: white;
-    }
-  }
-}
-
-.interest-icon {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.interest-name {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #333;
-  line-height: 1.2;
-}
-
-.selection-indicator {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--card-color);
-}
-
-// 底部操作区域
-.bottom-actions {
+.header-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 2rem;
-  border-top: 1px solid #e9ecef;
+  margin-bottom: 20px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
 }
 
-.selection-summary {
-  .selected-count {
-    color: #666;
-    font-size: 0.9rem;
-    font-weight: 500;
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #64748b;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: #f1f5f9;
+    color: #475569;
+  }
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+    padding: 12px;
+    font-size: 16px;
   }
 }
 
 .action-buttons {
   display: flex;
-  gap: 1rem;
-}
-
-.btn {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-skip {
-  background: #6c757d;
-  color: #fff;
+  gap: 12px;
   
-  &:hover {
-    background: #5a6268;
-  }
-}
-
-.btn-complete {
-  background: linear-gradient(45deg, #667eea, #764ba2);
-  color: #fff;
-  
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-  }
-}
-
-// 响应式设计
-@media (max-width: 768px) {
-  .interests-container {
-    padding: 2rem;
-    margin: 1rem;
-  }
-  
-  .title {
-    font-size: 2rem;
-  }
-  
-  .skip-btn {
-    position: static;
-    margin-top: 1rem;
-  }
-  
-  .interests-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 0.75rem;
-  }
-  
-  .interest-card {
-    padding: 1rem 0.75rem;
-    min-height: 100px;
-  }
-  
-  .interest-icon {
-    font-size: 1.5rem;
-  }
-  
-  .interest-name {
-    font-size: 0.8rem;
-  }
-  
-  .bottom-actions {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: stretch;
-  }
-  
-  .action-buttons {
-    justify-content: center;
+  @media (max-width: 768px) {
+    justify-content: space-between;
   }
   
   .btn {
-    flex: 1;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    
+    @media (max-width: 768px) {
+      flex: 1;
+      padding: 12px 16px;
+      font-size: 16px;
+    }
+    
+    &.btn-skip {
+      background: #f8fafc;
+      color: #64748b;
+      border-color: #e2e8f0;
+      
+      &:hover {
+        background: #f1f5f9;
+      }
+    }
+    
+    &.btn-explore {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      
+      &:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
   }
 }
 
-@media (max-width: 480px) {
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 20px; // 增加底部边距
+  text-align: center;
+  
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
+}
+
+.control-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+}
+
+.bulk-actions {
+  display: flex;
+  gap: 8px;
+  
+  .bulk-btn {
+    padding: 6px 12px;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    color: #374151;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: #e5e7eb;
+    }
+    
+    @media (max-width: 768px) {
+      flex: 1;
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+  }
+}
+
+.selection-count {
+  font-size: 14px;
+  color: #6b7280;
+  
+  .min-requirement {
+    font-size: 12px;
+    color: #ef4444;
+    
+    &.met {
+      color: #10b981;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    text-align: center;
+    font-size: 16px;
+  }
+}
+
+.scroll-content {
+  height: 60vh;
+  overflow-y: auto;
+  padding: 0 20px 20px;
+  
+  @media (max-width: 768px) {
+    padding: 0 16px 16px;
+    height: 65vh;
+  }
+}
+
+.categories-container {
+  .category-section {
+    margin-bottom: 32px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .category-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 16px;
+    
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+  
   .interests-grid {
-    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  }
+  
+  .interest-card {
+    position: relative;
+    padding: 16px;
+    background: #f9fafb;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    &.selected {
+      border-color: var(--card-color);
+      background: color-mix(in srgb, var(--card-color) 10%, white);
+      
+      .selection-indicator {
+        background: var(--card-color);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      padding: 12px;
+    }
+    
+    .interest-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+      
+      @media (max-width: 768px) {
+        font-size: 20px;
+        margin-bottom: 6px;
+      }
+    }
+    
+    .interest-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: #374151;
+      
+      @media (max-width: 768px) {
+        font-size: 11px;
+      }
+    }
+    
+    .selection-indicator {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      @media (max-width: 768px) {
+        width: 20px;
+        height: 20px;
+        top: 6px;
+        right: 6px;
+        
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
   }
 }

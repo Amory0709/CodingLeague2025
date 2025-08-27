@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { NgFor, NgIf } from '@angular/common';
+import { CanComponentDeactivate } from '../guards/can-deactivate.guard';
 
 @Component({
   selector: 'app-interests',
@@ -10,14 +11,12 @@ import { NgFor, NgIf } from '@angular/common';
   templateUrl: './interests.component.html',
   styleUrl: './interests.component.scss'
 })
-export class InterestsComponent {
-  isLoggedIn = true;
-  userInfo = {
-    name: 'User',
-    avatar: 'assets/default-avatar.svg'
-  };
-  
+export class InterestsComponent implements CanComponentDeactivate {
   selectedInterests: string[] = [];
+  allInterestIds: string[] = [];
+  
+  // 用于跟踪是否正在导航（绕过guard）
+  isNavigating = false;
   
   // 分类的兴趣选项
   interestCategories = [
@@ -67,7 +66,41 @@ export class InterestsComponent {
     }
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    // 收集所有兴趣ID
+    this.interestCategories.forEach(category => {
+      category.interests.forEach(interest => {
+        this.allInterestIds.push(interest.id);
+      });
+    });
+  }
+
+  // 实现 CanComponentDeactivate 接口
+  canDeactivate(): boolean {
+    if (this.isNavigating) {
+      // 如果正在导航，允许导航
+      return true;
+    }
+    
+    if (this.selectedInterests.length > 0) {
+      return confirm('You have selected interests. Are you sure you want to go back and lose your selections?');
+    }
+    return true;
+  }
+
+  goBack() {
+    // 如果有选择的兴趣，显示确认对话框
+    if (this.selectedInterests.length > 0) {
+      const confirmed = confirm('You have selected interests. Are you sure you want to go back and lose your selections?');
+      if (!confirmed) {
+        return;
+      }
+    }
+    
+    // 设置导航状态，绕过guard
+    this.isNavigating = true;
+    this.router.navigate(['/profile']);
+  }
 
   toggleInterest(interestId: string) {
     const index = this.selectedInterests.indexOf(interestId);
@@ -82,16 +115,32 @@ export class InterestsComponent {
     return this.selectedInterests.includes(interestId);
   }
 
+  selectAll() {
+    this.selectedInterests = [...this.allInterestIds];
+  }
+
+  unselectAll() {
+    this.selectedInterests = [];
+  }
+
   onSkip() {
+    // 设置导航状态，绕过guard
+    this.isNavigating = true;
     this.router.navigate(['/home2']);
   }
 
-  onComplete() {
+  onStartExploring() {
     console.log('Selected interests:', this.selectedInterests);
+    // 设置导航状态，绕过guard
+    this.isNavigating = true;
     this.router.navigate(['/home2']);
   }
 
   get selectedCount() {
     return this.selectedInterests.length;
+  }
+
+  canProceed() {
+    return this.selectedInterests.length >= 3;
   }
 }

@@ -16,7 +16,11 @@ export const routes: Routes = [
     loadComponent: () => import('./profile-page/profile-page.component').then(m => m.ProfilePageComponent),
     canDeactivate: [CanDeactivateGuard]
   },
-  { path: 'interests', loadComponent: () => import('./interests/interests.component').then(m => m.InterestsComponent) },
+  { 
+    path: 'interests', 
+    loadComponent: () => import('./interests/interests.component').then(m => m.InterestsComponent),
+    canDeactivate: [CanDeactivateGuard]
+  },
   { 
     path: 'contact', 
     loadComponent: () => import('./contact/contact.component').then(m => m.ContactComponent),
