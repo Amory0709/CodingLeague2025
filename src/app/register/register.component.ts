@@ -280,7 +280,7 @@ export class RegisterComponent implements CanComponentDeactivate, OnInit {
     this.generateCaptcha();
   }
 
-  generateCaptcha() {
+  generateCaptcha(clearError = true) {
     // 使用 assets/verification 下的 6 张图片
     this.captchaDescription = 'Select all images with a cat';
     this.captchaImages = [
@@ -294,6 +294,9 @@ export class RegisterComponent implements CanComponentDeactivate, OnInit {
     this.captchaSelectedIndexes = [];
     this.captchaPassed = false;
     this.captchaError = false;
+    if (clearError) {
+      this.captchaError = false; // 确保错误状态被清除
+    }
   }
 
   onCaptchaImageClick(idx: number) {
@@ -307,21 +310,41 @@ export class RegisterComponent implements CanComponentDeactivate, OnInit {
   }
 
   submitCaptcha() {
+    // 检查是否选择了图片
+    if (this.captchaSelectedIndexes.length === 0) {
+      this.captchaError = true;
+      this.captchaPassed = false;
+      console.log('No images selected');
+      return;
+    }
+    
     // cat1, cat2, cat3 为正确答案
     const correctIndexes = this.captchaImages
       .map((img, idx) => img.isAnswer ? idx : -1)
       .filter(idx => idx !== -1);
-    if (
+    
+    console.log('Selected indexes:', this.captchaSelectedIndexes);
+    console.log('Correct indexes:', correctIndexes);
+    
+    const isCorrect = (
       this.captchaSelectedIndexes.length === correctIndexes.length &&
       this.captchaSelectedIndexes.every(idx => correctIndexes.includes(idx)) &&
       correctIndexes.every(idx => this.captchaSelectedIndexes.includes(idx))
-    ) {
+    );
+    
+    if (isCorrect) {
       this.captchaPassed = true;
       this.captchaError = false;
+      console.log('Captcha verification passed!');
     } else {
       this.captchaPassed = false;
       this.captchaError = true;
-      this.generateCaptcha();
+      console.log('Captcha verification failed!');
+      
+      // 延迟重新生成验证码，让用户有时间看到错误提示
+      setTimeout(() => {
+        this.generateCaptcha(false); // 不清除错误状态
+      }, 2000);
     }
   }
 
