@@ -3,6 +3,7 @@ import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 
 export const routes: Routes = [
   { path: '', loadComponent: () => import('./home1/home1.component').then(m => m.Home1Component) },
+  { path: 'home', loadComponent: () => import('./home1/home1.component').then(m => m.Home1Component) },
   { 
     path: 'register', 
     loadComponent: () => import('./register/register.component').then(m => m.RegisterComponent),
