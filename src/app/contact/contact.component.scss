@@ -1,6 +1,6 @@
 .main {
   min-height: calc(100vh - 70px);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(180deg,#0014DC 0%,#0012b8 50%,#fff 100%);
   padding: 2rem;
   display: flex;
   justify-content: center;
@@ -23,7 +23,7 @@
   font-weight: bold;
   color: #333;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(180deg,#0014DC 0%,#0012b8 50%,#fff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -113,7 +113,7 @@ textarea.form-input {
 }
 
 .btn-send {
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #0014DC 0%, #0012b8 100%);
   color: #fff;
   
   &:hover {

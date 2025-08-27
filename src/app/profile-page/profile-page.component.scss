@@ -1,6 +1,6 @@
 .main {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0014DC 0%, #0012b8 50%, #000f9a 100%);
   padding: 20px;
   
   @media (max-width: 768px) {
@@ -14,7 +14,8 @@
   background: white;
   border-radius: 16px;
   padding: 32px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 20, 220, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   
   @media (max-width: 768px) {
     padding: 20px;
@@ -33,7 +34,7 @@
   
   .progress-bar-inner {
     height: 100%;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, #0014DC, #0012b8);
     border-radius: 3px;
     transition: width 0.3s ease;
   }
@@ -84,7 +85,7 @@
   
   .btn-upload {
     padding: 10px 20px;
-    background: #667eea;
+    background: linear-gradient(135deg, #0014DC 0%, #0012b8 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -197,7 +198,7 @@
     }
     
     &.btn-continue {
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: linear-gradient(135deg, #0014DC 0%, #0012b8 100%);
       color: white;
       
       &:hover {

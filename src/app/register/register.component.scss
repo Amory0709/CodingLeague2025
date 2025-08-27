@@ -210,12 +210,14 @@
 }
 
 .btn-register {
-  background: linear-gradient(45deg, #0014DC, #0014DC);
+  background: linear-gradient(135deg, #0014DC 0%, #0012b8 50%, #0014DC 100%);
   color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 20, 220, 0.3);
   
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 20, 220, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 20, 220, 0.5);
+    background: linear-gradient(135deg, #0012b8 0%, #0014DC 50%, #0012b8 100%);
   }
   
   &:disabled {
@@ -397,7 +399,7 @@
 }
 
 .btn-captcha, .btn-captcha-refresh {
-  background: #3366cc;
+  background: linear-gradient(135deg, #0014DC 0%, #0012b8 100%);
   color: #fff;
   border-radius: 8px;
   padding: 6px 18px;

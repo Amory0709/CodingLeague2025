@@ -1,6 +1,6 @@
 .main {
   min-height: calc(100vh - 70px - 200px); // 减少Footer高度估算
-  background: linear-gradient(135deg, #0014DC 0%, #0014DC 100%);
+  background: linear-gradient(180deg,       #0014DC 0%,       #0012b8 50%,       #fff 100%);
   padding: 2rem;
   display: flex;
   justify-content: center;
@@ -18,22 +18,23 @@
   font-weight: bold;
   color: #ffffff;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
 .desc {
   font-size: 1.3rem;
   color: #e8eaf6;
   margin-bottom: 2rem;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  box-shadow: 0 12px 40px rgba(0, 20, 220, 0.2);
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   
   p {
     font-size: 1.1rem;
@@ -44,7 +45,7 @@
 }
 
 .btn {
-  background: linear-gradient(45deg, #28a745, #20c997);
+  background: linear-gradient(135deg, #0014DC 0%, #0012b8 50%, #0014DC 100%);
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -52,18 +53,24 @@
   font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   text-decoration: none;
   display: inline-block;
+  box-shadow: 0 4px 15px rgba(0, 20, 220, 0.3);
   
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 20, 220, 0.5);
+    background: linear-gradient(135deg, #0012b8 0%, #0014DC 50%, #0012b8 100%);
   }
   
   &:focus {
-    outline: 2px solid #28a745;
+    outline: 2px solid #0014DC;
     outline-offset: 2px;
+  }
+  
+  &:active {
+    transform: translateY(-1px);
   }
 }
 
