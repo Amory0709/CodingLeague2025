@@ -1,15 +1,14 @@
 <div class="main">
   <div class="register-container">
     <h2 class="title">Registration</h2>
-    
     <form class="register-form" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="email">Email *</label>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          class="form-input" 
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-input"
           [class.error]="errors.email"
           [(ngModel)]="formData.email"
           (blur)="onEmailBlur()"
@@ -18,23 +17,23 @@
           {{ errorMessages.email }}
         </div>
       </div>
-      
+
       <div class="form-group">
         <label for="password">Password *</label>
         <div class="password-input-container">
-          <input 
-            [type]="showPassword ? 'text' : 'password'" 
-            id="password" 
-            name="password" 
-            class="form-input" 
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            name="password"
+            class="form-input"
             [class.error]="errors.password"
             [(ngModel)]="formData.password"
             (focus)="onPasswordFocus()"
             (input)="onPasswordInput()"
             (blur)="onPasswordBlur()"
             placeholder="Enter your password" />
-          <button 
-            type="button" 
+          <button
+            type="button"
             class="password-toggle-btn"
             (click)="togglePassword()"
             [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
@@ -42,7 +41,7 @@
             <span class="password-icon">{{ showPassword ? '👁️' : '👁️‍🗨️' }}</span>
           </button>
         </div>
-        
+
         <!-- 动态密码规则列表 -->
         <div class="password-rules" *ngIf="showPasswordRules">
           <div class="rules-title">Password Requirements:</div>
@@ -51,26 +50,26 @@
             <span class="rule-text">{{ rule.text }}</span>
           </div>
         </div>
-        
+
         <div class="error-message" *ngIf="errors.password">
           {{ errorMessages.password }}
         </div>
       </div>
-      
+
       <div class="form-group">
         <label for="confirmPassword">Confirm Password *</label>
         <div class="password-input-container">
-          <input 
-            [type]="showConfirmPassword ? 'text' : 'password'" 
-            id="confirmPassword" 
-            name="confirmPassword" 
-            class="form-input" 
+          <input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            id="confirmPassword"
+            name="confirmPassword"
+            class="form-input"
             [class.error]="errors.confirmPassword"
             [(ngModel)]="formData.confirmPassword"
             (blur)="onConfirmPasswordBlur()"
             placeholder="Confirm your password" />
-          <button 
-            type="button" 
+          <button
+            type="button"
             class="password-toggle-btn"
             (click)="toggleConfirmPassword()"
             [attr.aria-label]="showConfirmPassword ? 'Hide confirm password' : 'Show confirm password'"
@@ -82,26 +81,31 @@
           {{ errorMessages.confirmPassword }}
         </div>
       </div>
-      
+
       <div class="form-group">
-        <label for="userName">User Name (Optional)</label>
-        <input 
-          type="text" 
-          id="userName" 
-          name="userName" 
+        <label for="userName">User Name *</label>
+        <input
+          type="text"
+          id="userName"
+          name="userName"
           class="form-input"
+          [class.error]="errors.userName"
           [(ngModel)]="formData.userName"
+          (blur)="onUserNameBlur()"
           maxlength="100"
           placeholder="Enter your user name (max 100 characters)" />
+        <div class="error-message" *ngIf="errors.userName">
+          {{ errorMessages.userName }}
+        </div>
       </div>
-      
+
       <div class="form-group">
         <label for="team">Team Name *</label>
-        <input 
-          type="text" 
-          id="team" 
-          name="team" 
-          class="form-input" 
+        <input
+          type="text"
+          id="team"
+          name="team"
+          class="form-input"
           [class.error]="errors.team"
           [(ngModel)]="formData.team"
           (blur)="onTeamBlur()"
@@ -110,7 +114,47 @@
           {{ errorMessages.team }}
         </div>
       </div>
-      
+
+      <div class="form-group">
+        <label class="terms-label">
+          <input
+            type="checkbox"
+            [(ngModel)]="acceptedTerms"
+            name="acceptedTerms"
+          />
+          <a href="#" (click)="openTermsModal($event)">Accept Privacy and Terms</a>
+        </label>
+      </div>
+
+      <!-- 验证码区域移到这里，紧跟在所有输入项和terms之后，按钮之前 -->
+      <div class="form-group captcha-group">
+        <div class="captcha-desc">{{ captchaDescription }}</div>
+        <div class="captcha-images captcha-grid">
+          <div
+            class="captcha-img"
+            *ngFor="let img of captchaImages; let i = index"
+            [class.selected]="captchaSelectedIndexes.includes(i)"
+            (click)="onCaptchaImageClick(i)"
+          >
+            <img [attr.src]="img.url" alt="captcha" width="80" height="80" />
+          </div>
+        </div>
+        <div class="captcha-actions">
+          <button type="button" class="btn btn-captcha" (click)="submitCaptcha()" [disabled]="captchaPassed">
+            Verify
+          </button>
+          <button type="button" class="btn btn-captcha-refresh" (click)="generateCaptcha()" [disabled]="captchaPassed">
+            Refresh
+          </button>
+        </div>
+        <div class="error-message" *ngIf="captchaError">
+          Verification failed, please try again.
+        </div>
+        <div class="success-message" *ngIf="captchaPassed">
+          Verification passed!
+        </div>
+      </div>
+
       <div class="form-actions">
         <button type="button" class="btn btn-cancel" (click)="onCancel()">
           Cancel
@@ -120,5 +164,25 @@
         </button>
       </div>
     </form>
+  </div>
+  <!-- Terms Modal -->
+  <div class="terms-modal-backdrop" *ngIf="showTermsModal">
+    <div class="terms-modal">
+      <div class="terms-modal-title">Privacy and Terms</div>
+      <div class="terms-modal-content">
+        Coding League is the world's largest data science and machine learning community. We provide powerful tools and resources like customizable Jupyter notebooks, public datasets and machine learning competitions to help you achieve your data science goals.<br><br>
+        To create a Coding League account, you'll need to agree to the <a href="https://www.Coding League.com/terms" target="_blank">Terms of Use</a>.<br><br>
+        In addition, when you create an account, we process your information as described by our <a href="https://www.Coding League.com/privacy" target="_blank">Privacy Policy</a>, including the key points below.<br><br>
+        <b>Data we process when you use Coding League:</b><br>
+        - When you create a Coding League account, you provide us with personal information that includes your name and a password.<br>
+        - We also collect the content you create, upload, or receive from others when using our services.<br>
+        <!-- 可根据需要添加更多内容 -->
+      </div>
+      <div class="terms-modal-actions">
+        <button type="button" class="btn btn-cancel" (click)="closeTermsModal()">Cancel</button>
+        <button type="button" class="btn btn-agree" (click)="onAgreeTerms()">I Agree</button>
+      </div>
+      <div class="terms-modal-corner"></div>
+    </div>
   </div>
 </div>
