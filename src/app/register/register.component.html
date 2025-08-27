@@ -21,17 +21,27 @@
       
       <div class="form-group">
         <label for="password">Password *</label>
-        <input 
-          type="password" 
-          id="password" 
-          name="password" 
-          class="form-input" 
-          [class.error]="errors.password"
-          [(ngModel)]="formData.password"
-          (focus)="onPasswordFocus()"
-          (input)="onPasswordInput()"
-          (blur)="onPasswordBlur()"
-          placeholder="Enter your password" />
+        <div class="password-input-container">
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            id="password" 
+            name="password" 
+            class="form-input" 
+            [class.error]="errors.password"
+            [(ngModel)]="formData.password"
+            (focus)="onPasswordFocus()"
+            (input)="onPasswordInput()"
+            (blur)="onPasswordBlur()"
+            placeholder="Enter your password" />
+          <button 
+            type="button" 
+            class="password-toggle-btn"
+            (click)="togglePassword()"
+            [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+            title="{{ showPassword ? 'Hide password' : 'Show password' }}">
+            <span class="password-icon">{{ showPassword ? '👁️' : '👁️‍🗨️' }}</span>
+          </button>
+        </div>
         
         <!-- 动态密码规则列表 -->
         <div class="password-rules" *ngIf="showPasswordRules">
@@ -49,15 +59,25 @@
       
       <div class="form-group">
         <label for="confirmPassword">Confirm Password *</label>
-        <input 
-          type="password" 
-          id="confirmPassword" 
-          name="confirmPassword" 
-          class="form-input" 
-          [class.error]="errors.confirmPassword"
-          [(ngModel)]="formData.confirmPassword"
-          (blur)="onConfirmPasswordBlur()"
-          placeholder="Confirm your password" />
+        <div class="password-input-container">
+          <input 
+            [type]="showConfirmPassword ? 'text' : 'password'" 
+            id="confirmPassword" 
+            name="confirmPassword" 
+            class="form-input" 
+            [class.error]="errors.confirmPassword"
+            [(ngModel)]="formData.confirmPassword"
+            (blur)="onConfirmPasswordBlur()"
+            placeholder="Confirm your password" />
+          <button 
+            type="button" 
+            class="password-toggle-btn"
+            (click)="toggleConfirmPassword()"
+            [attr.aria-label]="showConfirmPassword ? 'Hide confirm password' : 'Show confirm password'"
+            title="{{ showConfirmPassword ? 'Hide confirm password' : 'Show confirm password' }}">
+            <span class="password-icon">{{ showConfirmPassword ? '👁️' : '👁️‍🗨️' }}</span>
+          </button>
+        </div>
         <div class="error-message" *ngIf="errors.confirmPassword">
           {{ errorMessages.confirmPassword }}
         </div>

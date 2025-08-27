@@ -24,6 +24,8 @@ export class RegisterComponent implements CanComponentDeactivate {
   isLoggedIn = false;
   userInfo = null;
   showPasswordRules = false;
+  showPassword = false;
+  showConfirmPassword = false;
   
   formData = {
     email: '',
@@ -274,5 +276,15 @@ export class RegisterComponent implements CanComponentDeactivate {
 
   onCancel() {
     this.router.navigate(['/']);
+  }
+
+  // 切换密码可见性
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  // 切换确认密码可见性
+  toggleConfirmPassword() {
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
 }

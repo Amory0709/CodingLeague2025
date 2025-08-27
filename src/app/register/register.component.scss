@@ -66,6 +66,49 @@
   }
 }
 
+// 密码输入框容器样式
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-container .form-input {
+  flex: 1;
+  padding-right: 50px; // 为按钮留出空间
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background-color: rgba(0, 20, 220, 0.1);
+  }
+  
+  &:focus {
+    outline: 2px solid #0014DC;
+    outline-offset: 2px;
+  }
+}
+
+.password-icon {
+  font-size: 18px;
+  line-height: 1;
+  user-select: none;
+}
+
 // 动态密码规则样式
 .password-rules {
   margin-top: 0.75rem;
