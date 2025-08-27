@@ -1,12 +1,22 @@
-<div class="help-float" [ngStyle]="floatStyle">
+<div class="help-float" [class.expanded]="isExpanded">
   <div class="help-float-header">
     <h3>Contact Us</h3>
-    <button class="help-float-close" (click)="onArrowUp()" title="Expand height">^</button>
+    <button class="help-float-close" (click)="onArrowUp()" title="Toggle">
+      {{ isExpanded ? '×' : '?' }}
+    </button>
   </div>
-  <div class="help-float-content">
-    <div>
-      <textarea class="help-float-textarea" rows="4" placeholder="Type your message..." [(ngModel)]="helpText"></textarea>
-      <button class="btn" type="button" (click)="onSubmit()">Send Message</button>
+  
+  <div class="help-float-content" *ngIf="isExpanded">
+    <div class="contact-info">
+      <p>Need help? We're here to assist you!</p>
+      <div class="contact-actions">
+        <button class="btn btn-primary" routerLink="/contact">
+          Send Message
+        </button>
+        <button class="btn btn-secondary" (click)="onSubmit()">
+          Quick Question
+        </button>
+      </div>
     </div>
   </div>
 </div>

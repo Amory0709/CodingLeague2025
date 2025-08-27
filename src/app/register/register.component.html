@@ -1,0 +1,95 @@
+<div class="main">
+  <div class="register-container">
+    <h2 class="title">Registration</h2>
+    
+    <form class="register-form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          class="form-input" 
+          [class.error]="errors.email"
+          [(ngModel)]="formData.email"
+          (blur)="onEmailBlur()"
+          placeholder="Enter your email" />
+        <div class="error-message" *ngIf="errors.email">
+          {{ errorMessages.email }}
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password *</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          class="form-input" 
+          [class.error]="errors.password"
+          [(ngModel)]="formData.password"
+          (blur)="onPasswordBlur()"
+          placeholder="Enter your password" />
+        <div class="password-hint">
+          at least 10 characters, at least 1 Capital letter, at least 1 Numeral, at least 1 special character
+        </div>
+        <div class="error-message" *ngIf="errors.password">
+          {{ errorMessages.password }}
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password *</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          name="confirmPassword" 
+          class="form-input" 
+          [class.error]="errors.confirmPassword"
+          [(ngModel)]="formData.confirmPassword"
+          (blur)="onConfirmPasswordBlur()"
+          placeholder="Confirm your password" />
+        <div class="error-message" *ngIf="errors.confirmPassword">
+          {{ errorMessages.confirmPassword }}
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="userName">User Name (Optional)</label>
+        <input 
+          type="text" 
+          id="userName" 
+          name="userName" 
+          class="form-input"
+          [(ngModel)]="formData.userName"
+          maxlength="100"
+          placeholder="Enter your user name (max 100 characters)" />
+      </div>
+      
+      <div class="form-group">
+        <label for="team">Team Name *</label>
+        <input 
+          type="text" 
+          id="team" 
+          name="team" 
+          class="form-input" 
+          [class.error]="errors.team"
+          [(ngModel)]="formData.team"
+          (blur)="onTeamBlur()"
+          placeholder="Enter your team name" />
+        <div class="error-message" *ngIf="errors.team">
+          {{ errorMessages.team }}
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" class="btn btn-cancel" (click)="onCancel()">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-register" [disabled]="!isFormValid()">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

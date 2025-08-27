@@ -15,7 +15,25 @@ export class HeaderComponent {
   
   // 默认匿名用户信息
   anonymousUser = {
-    name: 'Anonymous User',
+    name: 'Guest User',
     avatar: 'assets/default-avatar.svg'
   };
+
+  get displayName(): string {
+    if (this.isLoggedIn && this.userInfo) {
+      return this.userInfo.name || 'User';
+    }
+    return this.anonymousUser.name;
+  }
+
+  get displayAvatar(): string {
+    if (this.isLoggedIn && this.userInfo && this.userInfo.avatar) {
+      return this.userInfo.avatar;
+    }
+    return this.anonymousUser.avatar;
+  }
+
+  get userStatus(): string {
+    return this.isLoggedIn ? 'Logged In' : 'Guest';
+  }
 }

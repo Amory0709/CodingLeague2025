@@ -2,7 +2,7 @@
   <div class="header-container">
     <!-- 左侧Logo和标题 -->
     <div class="header-left">
-      <div class="logo-section">
+      <div class="logo-section" routerLink="/" title="Home">
         <img src="../../assets/logo.png" alt="Coding League" class="logo" />
         <h1 class="brand-title">Coding League</h1>
       </div>
@@ -10,17 +10,17 @@
     
     <!-- 右侧用户信息 -->
     <div class="header-right">
-      <div class="user-profile">
+      <div class="user-profile" routerLink="/profile" title="User Profile">
         <div class="user-info">
           <span class="user-name">
-            {{ isLoggedIn ? (userInfo?.name || 'User') : anonymousUser.name }}
+            {{ displayName }}
           </span>
           <span class="user-status">
-            {{ isLoggedIn ? 'Registered' : 'Guest' }}
+            {{ userStatus }}
           </span>
         </div>
         <div class="user-avatar">
-          <img [src]="isLoggedIn ? (userInfo?.avatar || anonymousUser.avatar) : anonymousUser.avatar" 
+          <img [src]="displayAvatar" 
                alt="User Avatar" 
                class="avatar-img" />
         </div>

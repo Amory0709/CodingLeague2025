@@ -1,41 +1,24 @@
-import { NgIf, NgStyle } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'help',
+  selector: 'app-help',
   standalone: true,
+  imports: [RouterModule, NgIf],
   templateUrl: './help.component.html',
-  styleUrls: ['./help.component.scss'],
-  imports: [NgIf, NgStyle, FormsModule]
+  styleUrl: './help.component.scss'
 })
 export class HelpComponent {
-
-  height = 0;
-  bottom = 16;
-  helpText = '';
-
-  get floatStyle() {
-    return {
-      height: this.height ? (220 + this.height) + 'px' : '220px',
-      bottom: this.bottom + 'px',
-    };
-  }
+  isExpanded = false;
 
   onArrowUp() {
-    if (this.bottom === -200) {
-      this.height = 0;
-      this.bottom = 16;
-    }
-    else {
-      this.height += 50;
-    }
-
+    this.isExpanded = !this.isExpanded;
   }
 
   onSubmit() {
-    this.height = 0;
-    this.bottom = -200;
+    // 快速联系功能
+    console.log('Quick contact submitted');
+    alert('Thank you for your quick message! We will get back to you soon.');
   }
-
 }

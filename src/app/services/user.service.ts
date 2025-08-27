@@ -7,8 +7,10 @@ export interface UserInfo {
   team: string;
   avatar?: string;
   title?: string;
-  gender?: string;
   address?: string;
+  birthYear?: string;
+  birthMonth?: string;
+  birthDay?: string;
   interests?: string[];
 }
 
@@ -49,6 +51,32 @@ export class UserService {
     localStorage.setItem('isLoggedIn', JSON.stringify(true));
   }
   
+  setDefaultUser() {
+    const defaultUser: UserInfo = {
+      name: 'mhan8@slb.com',
+      email: 'mhan8@slb.com',
+      team: 'SLB Team',
+      avatar: 'assets/default-avatar.svg'
+    };
+    this.setUserInfo(defaultUser);
+  }
+  
+  updateUserAvatar(avatarUrl: string) {
+    const currentUser = this.getCurrentUser();
+    if (currentUser) {
+      const updatedUser = { ...currentUser, avatar: avatarUrl };
+      this.setUserInfo(updatedUser);
+    }
+  }
+  
+  updateUserProfile(profileData: Partial<UserInfo>) {
+    const currentUser = this.getCurrentUser();
+    if (currentUser) {
+      const updatedUser = { ...currentUser, ...profileData };
+      this.setUserInfo(updatedUser);
+    }
+  }
+  
   clearUserInfo() {
     this.userInfoSubject.next(null);
     this.isLoggedInSubject.next(false);
@@ -64,13 +92,5 @@ export class UserService {
   
   getIsLoggedIn(): boolean {
     return this.isLoggedInSubject.value;
-  }
-  
-  updateUserInfo(updates: Partial<UserInfo>) {
-    const currentUser = this.getCurrentUser();
-    if (currentUser) {
-      const updatedUser = { ...currentUser, ...updates };
-      this.setUserInfo(updatedUser);
-    }
   }
 }

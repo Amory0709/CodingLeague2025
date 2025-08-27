@@ -1,0 +1,77 @@
+<div class="main">
+  <div class="contact-container">
+    <h2 class="title">Contact Us</h2>
+    <p class="subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+    
+    <form class="contact-form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Full Name *</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          class="form-input" 
+          [class.error]="errors.name"
+          [(ngModel)]="formData.name"
+          placeholder="Enter your full name" />
+        <div class="error-message" *ngIf="errors.name">
+          {{ errorMessages.name }}
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          class="form-input" 
+          [class.error]="errors.email"
+          [(ngModel)]="formData.email"
+          placeholder="Enter your email address" />
+        <div class="error-message" *ngIf="errors.email">
+          {{ errorMessages.email }}
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="subject">Subject *</label>
+        <input 
+          type="text" 
+          id="subject" 
+          name="subject" 
+          class="form-input" 
+          [class.error]="errors.subject"
+          [(ngModel)]="formData.subject"
+          placeholder="What is this about?" />
+        <div class="error-message" *ngIf="errors.subject">
+          {{ errorMessages.subject }}
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="message">Message *</label>
+        <textarea 
+          id="message" 
+          name="message" 
+          class="form-input" 
+          [class.error]="errors.message"
+          [(ngModel)]="formData.message"
+          rows="6"
+          placeholder="Tell us more about your inquiry..."></textarea>
+        <div class="error-message" *ngIf="errors.message">
+          {{ errorMessages.message }}
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" class="btn btn-cancel" (click)="onCancel()">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-send">
+          Send Message
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
