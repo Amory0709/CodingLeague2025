@@ -2,20 +2,28 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
-import { NgIf } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { CanComponentDeactivate } from '../guards/can-deactivate.guard';
+
+interface PasswordRule {
+  id: string;
+  text: string;
+  validator: (password: string) => boolean;
+  isCompleted: boolean;
+}
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, RouterModule, HeaderComponent, NgIf],
+  imports: [FormsModule, RouterModule, HeaderComponent, NgIf, NgFor],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements CanComponentDeactivate {
   isLoggedIn = false;
   userInfo = null;
+  showPasswordRules = false;
   
   formData = {
     email: '',
@@ -39,6 +47,34 @@ export class RegisterComponent implements CanComponentDeactivate {
     team: ''
   };
 
+  // 密码规则列表
+  passwordRules: PasswordRule[] = [
+    {
+      id: 'length',
+      text: 'At least 10 characters',
+      validator: (password: string) => password.length >= 10,
+      isCompleted: false
+    },
+    {
+      id: 'uppercase',
+      text: 'At least 1 uppercase letter',
+      validator: (password: string) => /[A-Z]/.test(password),
+      isCompleted: false
+    },
+    {
+      id: 'number',
+      text: 'At least 1 number',
+      validator: (password: string) => /\d/.test(password),
+      isCompleted: false
+    },
+    {
+      id: 'special',
+      text: 'At least 1 special character',
+      validator: (password: string) => /[@$!%*?&]/.test(password),
+      isCompleted: false
+    }
+  ];
+
   constructor(
     private router: Router,
     private userService: UserService
@@ -59,6 +95,33 @@ export class RegisterComponent implements CanComponentDeactivate {
       return confirm('You have unsaved changes. Are you sure you want to leave?');
     }
     return true;
+  }
+
+  // 密码输入框获得焦点时显示规则
+  onPasswordFocus() {
+    this.showPasswordRules = true;
+  }
+
+  // 密码输入时实时验证规则
+  onPasswordInput() {
+    this.validatePasswordRules();
+  }
+
+  // 验证所有密码规则
+  validatePasswordRules() {
+    this.passwordRules.forEach(rule => {
+      rule.isCompleted = rule.validator(this.formData.password);
+    });
+  }
+
+  // 获取密码规则图标
+  getRuleIcon(rule: PasswordRule): string {
+    return rule.isCompleted ? '✓' : '❌';
+  }
+
+  // 获取密码规则样式类
+  getRuleClass(rule: PasswordRule): string {
+    return rule.isCompleted ? 'rule-completed' : 'rule-incomplete';
   }
 
   validateEmail(email: string): boolean {
@@ -91,7 +154,7 @@ export class RegisterComponent implements CanComponentDeactivate {
       this.errorMessages.password = 'Password is required';
     } else if (!this.validatePassword(this.formData.password)) {
       this.errors.password = true;
-      this.errorMessages.password = 'Password must be at least 10 characters with 1 uppercase letter, 1 number, and 1 special character';
+      this.errorMessages.password = 'Password must meet all requirements';
     } else {
       this.errors.password = false;
     }
@@ -145,7 +208,7 @@ export class RegisterComponent implements CanComponentDeactivate {
       isValid = false;
     } else if (!this.validatePassword(this.formData.password)) {
       this.errors.password = true;
-      this.errorMessages.password = 'Password must be at least 10 characters with 1 uppercase letter, 1 number, and 1 special character';
+      this.errorMessages.password = 'Password must meet all requirements';
       isValid = false;
     } else {
       this.errors.password = false;

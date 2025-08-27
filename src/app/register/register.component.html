@@ -28,11 +28,20 @@
           class="form-input" 
           [class.error]="errors.password"
           [(ngModel)]="formData.password"
+          (focus)="onPasswordFocus()"
+          (input)="onPasswordInput()"
           (blur)="onPasswordBlur()"
           placeholder="Enter your password" />
-        <div class="password-hint">
-          at least 10 characters, at least 1 Capital letter, at least 1 Numeral, at least 1 special character
+        
+        <!-- 动态密码规则列表 -->
+        <div class="password-rules" *ngIf="showPasswordRules">
+          <div class="rules-title">Password Requirements:</div>
+          <div class="rule-item" *ngFor="let rule of passwordRules" [class]="getRuleClass(rule)">
+            <span class="rule-icon">{{ getRuleIcon(rule) }}</span>
+            <span class="rule-text">{{ rule.text }}</span>
+          </div>
         </div>
+        
         <div class="error-message" *ngIf="errors.password">
           {{ errorMessages.password }}
         </div>
