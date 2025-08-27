@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule, NgIf,NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
-import { NgIf, NgFor } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { CanComponentDeactivate } from '../guards/can-deactivate.guard';
 
@@ -16,17 +16,17 @@ interface PasswordRule {
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, RouterModule, HeaderComponent, NgIf, NgFor],
+  imports: [CommonModule,FormsModule, RouterModule, HeaderComponent, NgIf, NgFor],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements CanComponentDeactivate {
+export class RegisterComponent implements CanComponentDeactivate, OnInit {
   isLoggedIn = false;
   userInfo = null;
   showPasswordRules = false;
   showPassword = false;
   showConfirmPassword = false;
-  
+
   formData = {
     email: '',
     password: '',
@@ -34,19 +34,24 @@ export class RegisterComponent implements CanComponentDeactivate {
     userName: '',
     team: ''
   };
-  
+
+  acceptedTerms = false; // 新增：隐私条款勾选状态
+  showTermsModal = false; // 控制浮窗显示
+
   errors = {
     email: false,
     password: false,
     confirmPassword: false,
-    team: false
+    team: false,
+    userName: false // 新增 userName 错误标志
   };
-  
+
   errorMessages = {
     email: '',
     password: '',
     confirmPassword: '',
-    team: ''
+    team: '',
+    userName: '' // 新增 userName 错误信息
   };
 
   // 密码规则列表
@@ -76,6 +81,12 @@ export class RegisterComponent implements CanComponentDeactivate {
       isCompleted: false
     }
   ];
+  // 验证码相关
+  captchaDescription = '';
+  captchaImages: { url: string, isAnswer: boolean }[] = [];
+  captchaSelectedIndexes: number[] = [];
+  captchaPassed = false;
+  captchaError = false;
 
   constructor(
     private router: Router,
@@ -88,12 +99,12 @@ export class RegisterComponent implements CanComponentDeactivate {
     if (this.isFormValid()) {
       return false;
     }
-    
+
     // 检查是否有任何数据输入
-    return !!(this.formData.email || 
-              this.formData.password || 
-              this.formData.confirmPassword || 
-              this.formData.userName || 
+    return !!(this.formData.email ||
+              this.formData.password ||
+              this.formData.confirmPassword ||
+              this.formData.userName ||
               this.formData.team);
   }
 
@@ -193,9 +204,18 @@ export class RegisterComponent implements CanComponentDeactivate {
     }
   }
 
+  onUserNameBlur() {
+    if (!this.formData.userName || this.formData.userName.trim() === '') {
+      this.errors.userName = true;
+      this.errorMessages.userName = 'User name is required';
+    } else {
+      this.errors.userName = false;
+    }
+  }
+
   validateForm(): boolean {
     let isValid = true;
-    
+
     // 验证邮箱
     if (!this.formData.email) {
       this.errors.email = true;
@@ -208,7 +228,7 @@ export class RegisterComponent implements CanComponentDeactivate {
     } else {
       this.errors.email = false;
     }
-    
+
     // 验证密码
     if (!this.formData.password) {
       this.errors.password = true;
@@ -221,7 +241,7 @@ export class RegisterComponent implements CanComponentDeactivate {
     } else {
       this.errors.password = false;
     }
-    
+
     // 验证确认密码
     if (!this.formData.confirmPassword) {
       this.errors.confirmPassword = true;
@@ -234,7 +254,7 @@ export class RegisterComponent implements CanComponentDeactivate {
     } else {
       this.errors.confirmPassword = false;
     }
-    
+
     // 验证团队名称
     if (!this.formData.team || this.formData.team.trim() === '') {
       this.errors.team = true;
@@ -243,34 +263,96 @@ export class RegisterComponent implements CanComponentDeactivate {
     } else {
       this.errors.team = false;
     }
-    
+
+    // 验证用户名
+    if (!this.formData.userName || this.formData.userName.trim() === '') {
+      this.errors.userName = true;
+      this.errorMessages.userName = 'User name is required';
+      isValid = false;
+    } else {
+      this.errors.userName = false;
+    }
+
     return isValid;
+  }
+
+  ngOnInit() {
+    this.generateCaptcha();
+  }
+
+  generateCaptcha() {
+    // 使用 assets/verification 下的 6 张图片
+    this.captchaDescription = 'Select all images with a cat';
+    this.captchaImages = [
+      { url: '../../assets/verification/cat1.png', isAnswer: true },
+      { url: '../../assets/verification/cat2.png', isAnswer: true },
+      { url: '../../assets/verification/cat3.png', isAnswer: true },
+      { url: '../../assets/verification/2.png', isAnswer: false },
+      { url: '../../assets/verification/3.png', isAnswer: false },
+      { url: '../../assets/verification/5.png', isAnswer: false }
+    ].sort(() => Math.random() - 0.5); // 打乱顺序
+    this.captchaSelectedIndexes = [];
+    this.captchaPassed = false;
+    this.captchaError = false;
+  }
+
+  onCaptchaImageClick(idx: number) {
+    if (this.captchaPassed) return;
+    const i = this.captchaSelectedIndexes.indexOf(idx);
+    if (i >= 0) {
+      this.captchaSelectedIndexes.splice(i, 1);
+    } else {
+      this.captchaSelectedIndexes.push(idx);
+    }
+  }
+
+  submitCaptcha() {
+    // cat1, cat2, cat3 为正确答案
+    const correctIndexes = this.captchaImages
+      .map((img, idx) => img.isAnswer ? idx : -1)
+      .filter(idx => idx !== -1);
+    if (
+      this.captchaSelectedIndexes.length === correctIndexes.length &&
+      this.captchaSelectedIndexes.every(idx => correctIndexes.includes(idx)) &&
+      correctIndexes.every(idx => this.captchaSelectedIndexes.includes(idx))
+    ) {
+      this.captchaPassed = true;
+      this.captchaError = false;
+    } else {
+      this.captchaPassed = false;
+      this.captchaError = true;
+      this.generateCaptcha();
+    }
   }
 
   // 检查表单是否有效
   isFormValid(): boolean {
-    return !!(this.formData.email && 
-           this.formData.password && 
-           this.formData.confirmPassword && 
+    return !!(this.formData.email &&
+           this.formData.password &&
+           this.formData.confirmPassword &&
            this.formData.team &&
+           this.formData.userName &&
            this.validateEmail(this.formData.email) &&
            this.validatePassword(this.formData.password) &&
            this.formData.password === this.formData.confirmPassword &&
-           this.formData.team.trim() !== '');
+           this.formData.team.trim() !== '' &&
+           this.formData.userName.trim() !== '' &&
+           this.acceptedTerms &&
+           this.captchaPassed // 新增：验证码必须通过
+    );
   }
 
   onSubmit() {
     if (this.validateForm()) {
       // 设置用户信息
       this.userService.setUserInfo({
-        name: this.formData.userName || this.formData.email,
+        name: this.formData.userName, // 始终使用 userName
         email: this.formData.email,
         team: this.formData.team,
         avatar: 'assets/default-avatar.svg'
       });
-      
+
       console.log('Registration successful:', this.formData);
-      this.router.navigate(['/congrats']);
     }
   }
 
@@ -285,6 +367,18 @@ export class RegisterComponent implements CanComponentDeactivate {
 
   // 切换确认密码可见性
   toggleConfirmPassword() {
-    this.showConfirmPassword = !this.showConfirmPassword;
+    this.showConfirmPassword = !this.showConfirmPassword;}
+  openTermsModal(event: Event) {
+    event.preventDefault();
+    this.showTermsModal = true;
+  }
+
+  closeTermsModal() {
+    this.showTermsModal = false;
+  }
+
+  onAgreeTerms() {
+    this.acceptedTerms = true;
+    this.showTermsModal = false;
   }
 }
