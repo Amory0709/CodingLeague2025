@@ -69,8 +69,8 @@ export class RegisterComponent implements CanComponentDeactivate {
     },
     {
       id: 'special',
-      text: 'At least 1 special character',
-      validator: (password: string) => /[@$!%*?&]/.test(password),
+      text: 'At least 1 special character (!@#$%^&*()_-+=)',
+      validator: (password: string) => /[!@#$%^&*()_+=]/.test(password),
       isCompleted: false
     }
   ];
@@ -80,8 +80,14 @@ export class RegisterComponent implements CanComponentDeactivate {
     private userService: UserService
   ) {}
 
-  // 检查表单是否有数据
+  // 检查表单是否有未保存的更改
   hasFormData(): boolean {
+    // 如果表单已经完整且有效，则不需要提示未保存更改
+    if (this.isFormValid()) {
+      return false;
+    }
+    
+    // 检查是否有任何数据输入
     return !!(this.formData.email || 
               this.formData.password || 
               this.formData.confirmPassword || 
@@ -142,7 +148,7 @@ export class RegisterComponent implements CanComponentDeactivate {
       this.errorMessages.email = 'Email is required';
     } else if (!this.validateEmail(this.formData.email)) {
       this.errors.email = true;
-      this.errorMessages.email = 'Please enter a valid email address';
+      this.errorMessages.email = 'Please enter a valid email address, e.g., name@example.com';
     } else {
       this.errors.email = false;
     }
@@ -195,7 +201,7 @@ export class RegisterComponent implements CanComponentDeactivate {
       isValid = false;
     } else if (!this.validateEmail(this.formData.email)) {
       this.errors.email = true;
-      this.errorMessages.email = 'Please enter a valid email address';
+      this.errorMessages.email = 'Please enter a valid email address, e.g., name@example.com';
       isValid = false;
     } else {
       this.errors.email = false;
