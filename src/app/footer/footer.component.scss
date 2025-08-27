@@ -1,21 +1,21 @@
 .footer {
   background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
   color: #ecf0f1;
-  padding: 3rem 0 1rem 0;
+  padding: 2rem 0 1rem 0; // 减少padding
   margin-top: auto;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem; // 减少padding
 }
 
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); // 减少最小宽度
+  gap: 1.5rem; // 减少gap
+  margin-bottom: 1.5rem; // 减少margin
 }
 
 .footer-section {
@@ -23,31 +23,30 @@
   flex-direction: column;
 }
 
-.footer-brand {
-  .brand-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  .brand-description {
-    color: #bdc3c7;
-    line-height: 1.6;
-    font-size: 0.95rem;
-  }
+.brand-title {
+  font-size: 1.3rem; // 减少字体大小
+  font-weight: bold;
+  margin-bottom: 0.75rem; // 减少margin
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brand-description {
+  color: #bdc3c7;
+  line-height: 1.4;
+  font-size: 0.9rem; // 减少字体大小
+  margin: 0; // 移除margin
 }
 
 .footer-title {
-  font-size: 1.1rem;
+  font-size: 1rem; // 减少字体大小
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem; // 减少margin
   color: #ffffff;
   border-bottom: 2px solid #667eea;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.4rem; // 减少padding
   display: inline-block;
 }
 
@@ -57,7 +56,7 @@
   margin: 0;
   
   li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem; // 减少margin
   }
 }
 
@@ -65,29 +64,32 @@
   color: #bdc3c7;
   text-decoration: none;
   transition: color 0.2s;
-  font-size: 0.95rem;
+  font-size: 0.9rem; // 减少字体大小
   
-  &:hover {
+  &:hover,
+  &:focus {
     color: #667eea;
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
   }
 }
 
 .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.6rem; // 减少gap
 }
 
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
+  gap: 0.4rem; // 减少gap
+  font-size: 0.9rem; // 减少字体大小
 }
 
 .contact-icon {
-  font-size: 1.1rem;
-  width: 20px;
+  font-size: 1rem; // 减少字体大小
+  width: 18px; // 减少宽度
   text-align: center;
 }
 
@@ -96,48 +98,17 @@
   text-decoration: none;
   transition: color 0.2s;
   
-  &:hover {
+  &:hover,
+  &:focus {
     color: #667eea;
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
   }
-}
-
-.contact-text {
-  color: #bdc3c7;
-}
-
-.social-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.social-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #bdc3c7;
-  text-decoration: none;
-  transition: color 0.2s;
-  font-size: 0.95rem;
-  
-  &:hover {
-    color: #667eea;
-  }
-}
-
-.social-icon {
-  font-size: 1.1rem;
-  width: 20px;
-  text-align: center;
-}
-
-.social-label {
-  font-weight: 500;
 }
 
 .footer-bottom {
   border-top: 1px solid #34495e;
-  padding-top: 1.5rem;
+  padding-top: 1rem; // 减少padding
 }
 
 .footer-bottom-content {
@@ -145,36 +116,39 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem; // 减少gap
 }
 
 .copyright {
   color: #95a5a6;
-  font-size: 0.9rem;
+  font-size: 0.85rem; // 减少字体大小
   margin: 0;
 }
 
 .footer-bottom-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem; // 减少gap
   flex-wrap: wrap;
 }
 
 .footer-bottom-link {
   color: #95a5a6;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem; // 减少字体大小
   transition: color 0.2s;
   
-  &:hover {
+  &:hover,
+  &:focus {
     color: #667eea;
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
   }
 }
 
 // 响应式设计
 @media (max-width: 768px) {
   .footer {
-    padding: 2rem 0 1rem 0;
+    padding: 1.5rem 0 1rem 0; // 进一步减少移动端padding
   }
   
   .footer-container {
@@ -182,23 +156,51 @@
   }
   
   .footer-content {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-columns: 1fr; // 移动端单列布局
+    gap: 1rem; // 减少移动端gap
+    margin-bottom: 1rem;
   }
   
   .footer-bottom-content {
     flex-direction: column;
     text-align: center;
+    gap: 0.5rem;
   }
   
   .footer-bottom-links {
     justify-content: center;
+    gap: 0.75rem;
   }
 }
 
 @media (max-width: 480px) {
-  .footer-bottom-links {
-    flex-direction: column;
-    gap: 0.5rem;
+  .footer {
+    padding: 1rem 0 0.75rem 0; // 小屏幕进一步减少padding
+  }
+  
+  .footer-container {
+    padding: 0 0.75rem;
+  }
+  
+  .footer-content {
+    gap: 0.75rem;
+  }
+  
+  .brand-title {
+    font-size: 1.2rem;
+  }
+  
+  .footer-title {
+    font-size: 0.95rem;
+  }
+  
+  .footer-link,
+  .contact-link,
+  .footer-bottom-link {
+    font-size: 0.85rem;
+  }
+  
+  .copyright {
+    font-size: 0.8rem;
   }
 }

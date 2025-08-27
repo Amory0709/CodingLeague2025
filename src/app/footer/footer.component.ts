@@ -15,8 +15,7 @@ export class FooterComponent {
   // 联系信息
   contactInfo = {
     email: 'contact@codingleague.com',
-    phone: '+1 (555) 123-4567',
-    address: '123 Coding Street, Tech City, TC 12345'
+    phone: '+1 (555) 123-4567'
   };
   
   // 快速链接
@@ -24,12 +23,5 @@ export class FooterComponent {
     { label: 'Home', route: '/' },
     { label: 'Register', route: '/register' },
     { label: 'Contact Us', route: '/contact' }
-  ];
-  
-  // 社交媒体链接
-  socialLinks = [
-    { label: 'Twitter', url: 'https://twitter.com/codingleague', icon: '🐦' },
-    { label: 'LinkedIn', url: 'https://linkedin.com/company/codingleague', icon: '💼' },
-    { label: 'GitHub', url: 'https://github.com/codingleague', icon: '📚' }
   ];
 }

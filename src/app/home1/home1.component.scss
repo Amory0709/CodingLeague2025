@@ -1,5 +1,5 @@
 .main {
-  min-height: calc(100vh - 70px - 300px); // 减去header和footer的高度
+  min-height: calc(100vh - 70px - 200px); // 减少Footer高度估算
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 2rem;
   display: flex;
@@ -66,7 +66,7 @@
 @media (max-width: 768px) {
   .main {
     padding: 1rem;
-    min-height: calc(100vh - 70px - 400px);
+    min-height: calc(100vh - 70px - 250px);
   }
   
   .title {

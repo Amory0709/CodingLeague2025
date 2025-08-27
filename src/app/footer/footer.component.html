@@ -1,79 +1,63 @@
-<footer class="footer">
+<footer class="footer" role="contentinfo" aria-label="Website footer">
   <div class="footer-container">
     <!-- 主要内容区域 -->
     <div class="footer-content">
       <!-- 品牌信息 -->
-      <div class="footer-section">
-        <div class="footer-brand">
-          <h3 class="brand-title">BGC Coding League</h3>
-          <p class="brand-description">
-            Empowering developers through challenging competitions and innovative learning experiences.
-          </p>
-        </div>
-      </div>
+      <section class="footer-section" aria-labelledby="brand-heading">
+        <h3 id="brand-heading" class="brand-title">Coding League</h3>
+        <p class="brand-description">
+          Empowering developers through challenging competitions.
+        </p>
+      </section>
       
       <!-- 快速链接 -->
-      <div class="footer-section">
-        <h4 class="footer-title">Quick Links</h4>
+      <nav class="footer-section" aria-labelledby="links-heading">
+        <h4 id="links-heading" class="footer-title">Quick Links</h4>
         <ul class="footer-links">
           <li *ngFor="let link of quickLinks">
-            <a [routerLink]="link.route" class="footer-link">{{ link.label }}</a>
+            <a [routerLink]="link.route" 
+               class="footer-link"
+               [attr.aria-label]="'Navigate to ' + link.label + ' page'">
+              {{ link.label }}
+            </a>
           </li>
         </ul>
-      </div>
+      </nav>
       
       <!-- 联系信息 -->
-      <div class="footer-section">
-        <h4 class="footer-title">Contact Info</h4>
+      <section class="footer-section" aria-labelledby="contact-heading">
+        <h4 id="contact-heading" class="footer-title">Contact</h4>
         <div class="contact-info">
           <div class="contact-item">
-            <span class="contact-icon">📧</span>
-            <a href="mailto:{{ contactInfo.email }}" class="contact-link">
+            <span class="contact-icon" aria-hidden="true">📧</span>
+            <a href="mailto:{{ contactInfo.email }}" 
+               class="contact-link"
+               [attr.aria-label]="'Send email to ' + contactInfo.email">
               {{ contactInfo.email }}
             </a>
           </div>
           <div class="contact-item">
-            <span class="contact-icon">📞</span>
-            <a href="tel:{{ contactInfo.phone }}" class="contact-link">
+            <span class="contact-icon" aria-hidden="true">📞</span>
+            <a href="tel:{{ contactInfo.phone }}" 
+               class="contact-link"
+               [attr.aria-label]="'Call ' + contactInfo.phone">
               {{ contactInfo.phone }}
             </a>
           </div>
-          <div class="contact-item">
-            <span class="contact-icon">📍</span>
-            <span class="contact-text">{{ contactInfo.address }}</span>
-          </div>
         </div>
-      </div>
-      
-      <!-- 社交媒体 -->
-      <div class="footer-section">
-        <h4 class="footer-title">Follow Us</h4>
-        <div class="social-links">
-          <a 
-            *ngFor="let social of socialLinks" 
-            [href]="social.url" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="social-link"
-            [title]="social.label">
-            <span class="social-icon">{{ social.icon }}</span>
-            <span class="social-label">{{ social.label }}</span>
-          </a>
-        </div>
-      </div>
+      </section>
     </div>
     
     <!-- 底部版权信息 -->
     <div class="footer-bottom">
       <div class="footer-bottom-content">
         <p class="copyright">
-          © {{ currentYear }} BGC Coding League. All rights reserved.
+          © {{ currentYear }} Coding League. All rights reserved.
         </p>
-        <div class="footer-bottom-links">
-          <a href="#" class="footer-bottom-link">Privacy Policy</a>
-          <a href="#" class="footer-bottom-link">Terms of Service</a>
-          <a href="#" class="footer-bottom-link">Cookie Policy</a>
-        </div>
+        <nav class="footer-bottom-links" aria-label="Legal links">
+          <a href="#" class="footer-bottom-link" aria-label="Privacy Policy">Privacy</a>
+          <a href="#" class="footer-bottom-link" aria-label="Terms of Service">Terms</a>
+        </nav>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 .main {
-  min-height: calc(100vh - 70px - 300px); // 减去header和footer的高度
+  min-height: calc(100vh - 70px - 200px); // 减少Footer高度估算
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,6 +56,8 @@
   
   &:focus {
     border-color: #667eea;
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
   }
   
   &.error {
@@ -148,6 +150,11 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  
+  &:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+  }
 }
 
 .btn-cancel {
@@ -186,7 +193,7 @@
 @media (max-width: 768px) {
   .main {
     padding: 1rem;
-    min-height: calc(100vh - 70px - 400px);
+    min-height: calc(100vh - 70px - 250px);
   }
   
   .register-container {
