@@ -1,0 +1,42 @@
+<form class="game-form" #gameForm="ngForm">
+  <h2>Account Info</h2>
+  <div class="game-fields">
+    <div class="email-row">
+      <div class="input-container">
+        <input type="text" placeholder="Your email" class="input email-input" name="email" [(ngModel)]="formData.email"/>
+      </div>
+      <span class="email-at">&#64;</span>
+      <div class="input-container">
+        <input type="text" placeholder="Domain" class="input domain-input" name="domain" [(ngModel)]="formData.domain" />
+      </div>
+      <span class="email-suffix">.com</span>
+    </div>
+    
+    <div class="input-container">
+      <input type="text" placeholder="Team name" class="input" name="team" [(ngModel)]="formData.team" />
+    </div>
+    
+    <div class="input-container">
+      <input type="password" placeholder="Password" class="input" name="password" [(ngModel)]="formData.password" />
+    </div>
+    
+    <div class="input-container">
+      <input type="password" placeholder="Confirm Password" class="input" name="confirmPassword" [(ngModel)]="formData.confirmPassword" />
+    </div>
+  </div>
+  
+  <div class="password-requirements">
+    <p>Password requirements: at least 10 characters, at least 1 Capital letter, at least 1 Numeral, at least 1 special character.</p>
+  </div>
+  
+  <div class="game-checkboxes">
+    <label><input type="checkbox" name="terms" [(ngModel)]="formData.terms" /> I do not accept the Terms & Conditions</label>
+    <p *ngIf="termsError" class="terms-error">Please do NOT forget to accept our terms and conditions</p>
+  </div>
+  
+  <div class="game-actions">
+    <span (click)="validateForm()">Next</span>
+    <button type="button" class="btn" routerLink="/">Cancel</button>
+    <button type="reset" class="btn" (click)="resetForm()">Reset</button>
+  </div>
+</form>

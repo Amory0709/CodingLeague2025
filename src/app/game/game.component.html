@@ -1,0 +1,14 @@
+
+<div class="game-main">
+  <cookie *ngIf="showCookie" (close)="handleCookieClose()"></cookie>
+  <help />
+  <div class="game-header">
+    <span class="game-step">
+      <span *ngFor="let step of steps; let i = index" class="step-circle" [class.active-step]="i === stepActive">{{ step }}</span>
+    </span>
+  </div>
+  <step1 *ngIf="currentStep === 1" (nextStep)="handleNextStep1($event)"></step1>
+  <profile *ngIf="currentStep === 2" (nextStep)="handleNextStep2($event)"></profile>
+  <interests *ngIf="currentStep === 3" (nextStep)="handleNextStep3($event)"></interests>
+  <step4 *ngIf="currentStep === 4" (nextStep)="handleNextStep4()"></step4>
+</div>

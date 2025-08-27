@@ -1,0 +1,125 @@
+.popup-copyright {
+  position: absolute;
+  left: 5px;
+  bottom: 10px;
+  font-size: 13px;
+  color: #aaa;
+  user-select: none;
+}
+.copyright-close {
+  color: #aaa;
+  text-decoration: underline;
+  cursor: pointer;
+  user-select: auto;
+  pointer-events: auto;
+  transition: color 0.2s;
+}
+.copyright-close:hover {
+  color: #29c566;
+}
+
+.popup-lock-btn {
+  margin-top: 32px;
+  background: #29c566;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 36px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(41,197,102,0.08);
+  transition: background 0.2s;
+}
+.popup-lock-btn:hover {
+  background: #22a655;
+}
+.popup-lock-btn.locked {
+  background: #e74c3c;
+}
+.popup-lock-btn.locked:hover {
+  background: #c0392b;
+}
+.popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+  padding: 32px 40px;
+  min-width: 320px;
+  max-width: 90vw;
+  max-height: 90vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: popup-fade-in 0.25s cubic-bezier(0.4,0,0.2,1);
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.popup-content.fullscreen {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.popup-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.popup-fullscreen {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #888;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.2s;
+}
+.popup-fullscreen:hover {
+  color: #222;
+}
+
+.popup-close:hover {
+  color: #222;
+}
+
+@keyframes popup-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

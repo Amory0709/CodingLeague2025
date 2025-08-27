@@ -1,0 +1,146 @@
+.btn {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  background: #29c566;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 11px 29px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 2;
+}
+.btn:hover {
+  background: #22a655;
+}
+
+.help-float {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 1002;
+  max-width: 340px;
+  min-width: 260px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  padding: 20px 24px 16px 24px;
+  transition: bottom 10s;
+}
+
+.help-float-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.help-float-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.help-float-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #888;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.help-float-close:hover {
+  background: #f0f0f0;
+  color: #29c566;
+}
+
+.help-float-content {
+  font-size: 15px;
+  color: #444;
+}
+
+.help-float-content ul {
+  margin: 0 0 10px 18px;
+  padding: 0;
+}
+
+.help-float-content li {
+  margin-bottom: 6px;
+}
+
+.help-float-tip {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-top: 10px;
+  color: #495057;
+  font-size: 14px;
+}
+
+.help-float-tip strong {
+  color: #29c566;
+}
+
+.help-float-arrow {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #29c566;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.help-float-arrow:hover {
+  background: #e6f9ef;
+  color: #178a3d;
+}
+
+.help-float-textarea {
+  width: 100%;
+  min-height: 60px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 15px;
+  resize: vertical;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.help-float-textarea:focus {
+  border: 1.5px solid #29c566;
+}
+
+@keyframes help-float-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

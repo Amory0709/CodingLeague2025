@@ -1,0 +1,142 @@
+.avatar-error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 6px;
+  margin-bottom: 2px;
+}
+
+.step2-btn-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  margin-top: 18px;
+}
+.btn {
+  border: none;
+  border-radius: 6px;
+  padding: 11px 29px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-cancel {
+  background: #29c566;
+  color: #fff;
+}
+.btn-cancel:hover {
+  background: #22a655;
+}
+.btn-next {
+  background: #e74c3c;
+  color: #fff;
+}
+.btn-next:hover {
+  background: #c0392b;
+}
+
+.interests-form {
+  margin-top: 24px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px 24px 16px 24px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  border: 1px solid #e6e6e6;
+}
+.interests-label {
+  font-size: 15px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+.interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: 10px;
+}
+.interest-item {
+  font-size: 14px;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 4px 10px 4px 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+.interest-item input[type="checkbox"] {
+  accent-color: #29c566;
+  margin-right: 2px;
+}
+.avatar-upload-btn {
+  display: inline-block;
+  background: #00b6ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 28px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 8px;
+}
+.avatar-upload-btn:hover {
+  background: #008fd1;
+}
+
+.avatar-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px 24px 16px 24px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  border: 1px solid #e6e6e6;
+  align-items: center;
+}
+.avatar-label {
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.avatar-preview {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.avatar-img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid #29c566;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  background: #fff;
+}
+#avatarInput[type="file"] {
+  font-size: 15px;
+  padding: 6px 0;
+  color: #555;
+  background: none;
+  border: none;
+  outline: none;
+}
+.game-form {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 32px 40px;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}

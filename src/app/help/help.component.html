@@ -1,0 +1,12 @@
+<div class="help-float" [ngStyle]="floatStyle">
+  <div class="help-float-header">
+    <h3>Contact Us</h3>
+    <button class="help-float-close" (click)="onArrowUp()" title="Expand height">^</button>
+  </div>
+  <div class="help-float-content">
+    <div>
+      <textarea class="help-float-textarea" rows="4" placeholder="Type your message..." [(ngModel)]="helpText"></textarea>
+      <button class="btn" type="button" (click)="onSubmit()">Send Message</button>
+    </div>
+  </div>
+</div>

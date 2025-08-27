@@ -1,0 +1,36 @@
+<form class="game-form step3-form" (submit)="onSubmit($event)">
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <select id="title" name="title" class="form-input" [(ngModel)]="form.title">
+      <option value="">Select your title</option>
+      <option value="Mr">Mr</option>
+      <option value="Ms">Ms</option>
+      <option value="Mrs">Mrs</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input id="name" name="name" type="text" class="form-input" placeholder="Enter your name" [(ngModel)]="form.name" />
+  </div>
+  <div class="form-group">
+    <label>Gender:</label>
+    <label class="radio-inline"><input type="radio" name="gender" value="male" [(ngModel)]="form.gender" /> Male</label>
+    <label class="radio-inline"><input type="radio" name="gender" value="female" [(ngModel)]="form.gender" /> Female</label>
+  </div>
+  <div class="form-group">
+    <label for="address">Address:</label>
+    <input id="address" name="address" type="text" class="form-input" placeholder="Enter your address" [(ngModel)]="form.address" />
+  </div>
+  <div class="form-group">
+    <label for="age">Age:</label>
+    <input id="age" name="age" type="number" class="form-input" min="0" max="120" placeholder="Enter your age" [(ngModel)]="form.age" />
+  </div>
+  <div class="form-group">
+    <label for="birthday">Date of Birth:</label>
+    <input id="birthday" name="birthday" type="date" class="form-input" [(ngModel)]="form.birthday" />
+  </div>
+  <div class="step3-btn-row">
+    <button type="button" class="btn btn-cancel" routerLink="/">Cancel</button>
+    <button type="submit" class="btn btn-next">Next</button>
+  </div>
+</form>

@@ -1,0 +1,14 @@
+<div class="popup-backdrop">
+  <div class="popup-content" [class.fullscreen]="isFullscreen" (click)="$event.stopPropagation()">
+    <button class="popup-fullscreen" (click)="toggleFullscreen()" [attr.aria-label]="isFullscreen ? 'Exit fullscreen' : 'Fullscreen'">
+      <span *ngIf="!isFullscreen">&#x26F6;</span>
+      <span *ngIf="isFullscreen">&#x2715;</span>
+    </button>
+    <h1>Hurry up, time is ticking!</h1>
+    <ng-content></ng-content>
+    <button class="popup-lock-btn" [class.locked]="isLocked" (click)="toggleLock()">
+      {{ isLocked ? 'Unlock' : 'Lock' }}
+    </button>
+    <div class="popup-copyright"><span (click)="onClose()">©lose </span> BGC Coding League 2025</div>
+</div>
+

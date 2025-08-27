@@ -1,0 +1,69 @@
+<form class="profile-form">
+  <h2>Profile Information</h2>
+  
+  <div class="avatar-section">
+    <h3>Profile Picture</h3>
+    <div class="avatar-options">
+      <div class="avatar-preview" *ngIf="avatarUrl">
+        <img [src]="avatarUrl" alt="头像预览" class="avatar-img" />
+      </div>
+      
+      <div class="avatar-actions">
+        <button type="button" class="upload-btn" (click)="fileInput.click()">
+          Upload Photo
+        </button>
+        <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" style="display:none" />
+        
+        <div class="default-avatars">
+          <p>Or choose a default avatar:</p>
+          <div class="avatar-grid">
+            <img *ngFor="let avatar of defaultAvatars" 
+                 [src]="avatar" 
+                 alt="Default avatar" 
+                 class="default-avatar"
+                 (click)="selectDefaultAvatar(avatar)" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="personal-info">
+    <h3>Personal Information</h3>
+    
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <select id="title" name="title" class="form-input" [(ngModel)]="form.title">
+        <option value="">Select your title</option>
+        <option value="Mr">Mr</option>
+        <option value="Ms">Ms</option>
+        <option value="Mrs">Mrs</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input id="name" name="name" type="text" class="form-input" placeholder="Enter your name" [(ngModel)]="form.name" />
+    </div>
+    
+    <div class="form-group">
+      <label>Gender:</label>
+      <label class="radio-inline">
+        <input type="radio" name="gender" value="male" [(ngModel)]="form.gender" /> Male
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="gender" value="female" [(ngModel)]="form.gender" /> Female
+      </label>
+    </div>
+    
+    <div class="form-group">
+      <label for="address">Address (Optional):</label>
+      <input id="address" name="address" type="text" class="form-input" placeholder="Enter your address" [(ngModel)]="form.address" />
+    </div>
+  </div>
+
+  <div class="profile-actions">
+    <button type="button" class="btn btn-cancel" routerLink="/">Cancel</button>
+    <button type="button" class="btn btn-next" (click)="onNext()">Next</button>
+  </div>
+</form>

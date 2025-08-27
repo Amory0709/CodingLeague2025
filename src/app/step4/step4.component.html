@@ -1,0 +1,13 @@
+<div class="step4-captcha">
+  <h3 class="step4-title">Select all light pictures</h3>
+  <div class="step4-gallery" #gallery>
+    <div *ngFor="let img of images; let i = index" class="step4-img-label">
+      <input type="checkbox" [(ngModel)]="selected[i]" />
+      <img [src]="img" [alt]="'light' + i" class="step4-img" />
+    </div>
+  </div>
+  <div class="step4-btn-row">
+    <button type="button" class="btn btn-cancel" routerLink="/">Cancel</button>
+    <button type="button" class="btn btn-next" (click)="onSubmit()">Submit</button>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+
+.game-main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.game-header {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.game-timer {
+  font-size: 50px;
+  color: #aaa;
+}
+
+
+.game-step {
+  margin-top: 50px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.step-circle {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #29c566;
+  color: white;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.active-step {
+  color: #29c566;
+  background: white;
+}
+
+.help-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #29c566;
+  color: white;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(41, 197, 102, 0.3);
+}
+
+.help-button:hover {
+  background: #22a655;
+}
+

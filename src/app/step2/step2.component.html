@@ -1,0 +1,26 @@
+<form class="game-form">
+  <div class="avatar-upload-section">
+    <div class="avatar-preview" *ngIf="avatarUrl">
+      <img [src]="avatarUrl" alt="头像预览" class="avatar-img" />
+    </div>
+    <p>	To complete your profile, please <span (click)="avatarInput.click()">upload</span> any image.</p>
+    <button type="button" class="avatar-upload-btn" (click)="downloadAvatar()">Download Avatar</button>
+    <input #avatarInput id="avatarInput" type="file" accept="image/*" (change)="onFileSelected($event)" style="display:none" />
+    <form class="interests-form">
+      <label class="interests-label">Choose 3 interests:</label>
+      <div class="interests-list">
+        <label *ngFor="let interest of allInterests; let i = index" class="interest-item">
+          <input type="checkbox"
+                 [checked]="interests.includes(interest)"
+                 (change)="onInterestChange($event, interest)"
+                 name="interests-{{interest}}" />
+          {{interest}}
+        </label>
+      </div>
+    </form>
+  </div>
+  <div class="step2-btn-row">
+    <button type="button" class="btn btn-cancel" routerLink="/">Cancel</button>
+    <button type="button" class="btn btn-next" (click)="onNext()">Next</button>
+  </div>
+</form>

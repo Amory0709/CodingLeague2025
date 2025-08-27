@@ -1,0 +1,192 @@
+.game-form {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 32px 40px;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: fit-content;
+  overflow: visible;
+}
+
+.game-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.email-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  gap: 8px;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  
+  input {
+    color: #333;
+  }
+}
+
+.email-input {
+  flex: 1;
+}
+
+.email-at {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+}
+
+.email-suffix {
+  font-size: 16px;
+  color: #666;
+  font-weight: 500;
+}
+
+.domain-input {
+  flex: 2;
+}
+
+.input-error {
+  border: 1px solid #e74c3c;
+  background-color: rgba(231, 76, 60, 0.05);
+}
+
+.field-error {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 4px;
+  position: absolute;
+  bottom: -20px;
+}
+
+.input {
+  padding: 11px 16px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.input:focus {
+  border: 1.5px solid #00b6ff;
+}
+
+.password-requirements {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #00b6ff;
+  
+  p {
+    color: #666;
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+.game-checkboxes {
+  margin-bottom: 19px;
+  color: #333;
+  font-size: 15px;
+}
+
+.terms-error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+.game-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 19px;
+  justify-content: space-around;
+  align-items: center;
+  
+  span {
+    color: #00b6ff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 11px 29px;
+    border-radius: 6px;
+    transition: background 0.2s;
+    
+    &:hover {
+      background: rgba(0, 182, 255, 0.1);
+    }
+  }
+}
+
+.btn {
+  background: #00b6ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 11px 29px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Cancel按钮 - 绿色 */
+button.btn[type="button"] {
+  background: #29c566;
+}
+
+button.btn[type="button"]:hover {
+  background: #22a655;
+}
+
+/* Reset按钮 - 红色 */
+button.btn[type="reset"] {
+  background: #e74c3c;
+}
+
+button.btn[type="reset"]:hover {
+  background: #c0392b;
+}
+
+.btn-next {
+  background: #ffb400;
+  color: #222;
+}
+
+.btn-next:hover {
+  background: #e6a200;
+}
+
+.game-tips {
+  margin-top: 19px;
+  padding-left: 19px;
+  color: #888;
+  font-size: 15px;
+}
+
+.game-tips li {
+  margin-bottom: 5px;
+  list-style: none;
+  color:#29c566
+}
+
+
+
+.highlight {
+  color: red !important;
+}
