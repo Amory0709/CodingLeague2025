@@ -1,6 +1,6 @@
 .main {
-  min-height: calc(100vh - 70px);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: calc(100vh - 70px - 200px); // 减少Footer高度估算
+  background: linear-gradient(135deg, #0014DC 0%, #0014DC 100%);
   padding: 2rem;
   display: flex;
   justify-content: center;
@@ -23,7 +23,7 @@
   font-weight: bold;
   color: #333;
   margin-bottom: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0014DC 0%, #0014DC 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -39,12 +39,6 @@
     border-bottom: 2px solid #e9ecef;
     padding-bottom: 0.5rem;
   }
-}
-
-.avatar-options {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
 }
 
 .avatar-preview {
@@ -69,8 +63,8 @@
   gap: 1rem;
 }
 
-.upload-btn {
-  background: #007bff;
+.btn-upload {
+  background: #0014DC;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -82,7 +76,12 @@
   align-self: flex-start;
   
   &:hover {
-    background: #0056b3;
+    background: #0010b3;
+  }
+  
+  &:focus {
+    outline: 2px solid #0014DC;
+    outline-offset: 2px;
   }
 }
 
@@ -92,12 +91,6 @@
     margin-bottom: 0.5rem;
     font-size: 14px;
     line-height: 1.4;
-  }
-  
-  .avatar-hint {
-    color: #999;
-    font-size: 12px;
-    font-style: italic;
   }
 }
 
@@ -123,7 +116,9 @@
   font-family: inherit;
   
   &:focus {
-    border-color: #667eea;
+    border-color: #0014DC;
+    outline: 2px solid #0014DC;
+    outline-offset: 2px;
   }
   
   &.error {
@@ -142,8 +137,8 @@ select.form-input {
   cursor: pointer;
   
   &:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #0014DC;
+    box-shadow: 0 0 0 3px rgba(0, 20, 220, 0.1);
   }
 }
 
@@ -178,7 +173,7 @@ select.form-input {
   }
 }
 
-.profile-actions {
+.form-actions {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
@@ -195,6 +190,11 @@ select.form-input {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  
+  &:focus {
+    outline: 2px solid #0014DC;
+    outline-offset: 2px;
+  }
 }
 
 .btn-cancel {
@@ -207,12 +207,12 @@ select.form-input {
 }
 
 .btn-save {
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: linear-gradient(45deg, #0014DC, #0014DC);
   color: #fff;
   
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 20, 220, 0.4);
   }
 }
 
@@ -227,16 +227,11 @@ select.form-input {
     font-size: 2rem;
   }
   
-  .avatar-options {
-    flex-direction: column;
-    align-items: center;
-  }
-  
   .birthday-inputs {
     grid-template-columns: 1fr;
   }
   
-  .profile-actions {
+  .form-actions {
     flex-direction: column;
   }
   

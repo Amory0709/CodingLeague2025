@@ -1,6 +1,6 @@
 .main {
   min-height: calc(100vh - 70px - 200px); // 减少Footer高度估算
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0014DC 0%, #0014DC 100%);
   padding: 2rem;
   display: flex;
   justify-content: center;
@@ -44,7 +44,7 @@
 }
 
 .btn {
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: linear-gradient(45deg, #0014DC, #0014DC);
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -58,7 +58,7 @@
   
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 20, 220, 0.4);
   }
 }
 

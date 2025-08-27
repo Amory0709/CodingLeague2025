@@ -1,19 +1,19 @@
 .header {
   background: #ffffff;
-  border-bottom: 1px solid #e9ecef;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
+  height: 70px;
 }
 
 .header-container {
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 2rem;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
 }
 
 .header-left {
@@ -24,29 +24,28 @@
 .logo-section {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 1rem;
   cursor: pointer;
-  transition: opacity 0.2s;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s;
   
   &:hover {
-    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
 
 .logo {
+  width: 40px;
   height: 40px;
-  width: auto;
+  object-fit: contain;
 }
 
 .brand-title {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #333;
+  color: #0014DC;
   margin: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .header-right {
@@ -57,18 +56,16 @@
 .user-profile {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 16px;
-  border-radius: 25px;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  transition: all 0.2s;
+  gap: 1rem;
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.2s;
   
   &:hover {
-    background: #e9ecef;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #f8f9fa;
   }
 }
 
@@ -79,16 +76,14 @@
 }
 
 .user-name {
-  font-size: 14px;
   font-weight: 600;
   color: #333;
-  line-height: 1.2;
+  font-size: 0.95rem;
 }
 
 .user-status {
-  font-size: 12px;
+  font-size: 0.8rem;
   color: #666;
-  line-height: 1.2;
 }
 
 .user-avatar {
@@ -96,8 +91,7 @@
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: 2px solid #e9ecef;
 }
 
 .avatar-img {
@@ -109,20 +103,11 @@
 // 响应式设计
 @media (max-width: 768px) {
   .header-container {
-    padding: 0 16px;
-    height: 60px;
-  }
-  
-  .logo {
-    height: 32px;
+    padding: 0 1rem;
   }
   
   .brand-title {
-    font-size: 20px;
-  }
-  
-  .user-profile {
-    padding: 6px 12px;
+    font-size: 1.3rem;
   }
   
   .user-info {
@@ -130,17 +115,7 @@
   }
   
   .user-avatar {
-    width: 36px;
-    height: 36px;
-  }
-}
-
-@media (max-width: 480px) {
-  .brand-title {
-    display: none;
-  }
-  
-  .logo-section {
-    gap: 8px;
+    width: 35px;
+    height: 35px;
   }
 }
